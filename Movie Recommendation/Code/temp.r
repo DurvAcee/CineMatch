@@ -20,13 +20,13 @@ library(plotly)
 View(Netflix)
 View(TV2)
 
-Netflix1 <- read.csv("D:\\DurvACEE\\Study\\MCS\\Project\\DataScience\\DataSets\\movie_metadata.csv")
-poster <- read.csv("D:\\DurvACEE\\Study\\MCS\\Project\\DataScience\\DataSets\\MovieGenre1.csv")
-posterx <- read.csv("D:\\DurvACEE\\Study\\MCS\\Project\\DataScience\\DataSets\\MovieGenre.csv")
+Netflix1 <- read.csv("DataSets\\movie_metadata.csv")
+poster <- read.csv("DataSets\\MovieGenre1.csv")
+posterx <- read.csv("DataSets\\MovieGenre.csv")
 
 colnames(Netflix)
 
-TV<-read.csv("D:\\DurvACEE\\Study\\MCS\\Project\\DataScience\\DataSets\\TvSeries.csv")
+TV<-read.csv("DataSets\\TvSeries.csv")
 
 TV2<-select(TV , X , Title , totalSeasons , Genre  , imdbRating ,Plot , Year , Actors , Country , Language , Director , Poster , Rated , Released , Runtime.in.minutes , imdbVotes , Writer , Type , Awards)
 TV2$Genre<-gsub(", ","|",TV2$Genre)
@@ -42,9 +42,9 @@ TVS<-data.frame(TV3)
 tv4<- TV3 %>% separate(Genre, c("g1", "g2", "g3", "g4","g5", "g6", "g7", "g8"), "\\|")
 tv4[is.na(tv4)]<-0
 
-#removing Â & na from movie_title
+#removing Ã‚ & na from movie_title
 
-Netflix <- Netflix %>% mutate(movie_title = gsub("Â", "", movie_title))
+Netflix <- Netflix %>% mutate(movie_title = gsub("Ã‚", "", movie_title))
 Netflix$movie_imdb_link <- paste0("<a href='",Netflix$movie_imdb_link,"'>",Netflix$movie_imdb_link,"</a>")
 
 Netflix <- Netflix %>% na.omit()
